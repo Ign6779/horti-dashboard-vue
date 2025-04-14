@@ -7,7 +7,7 @@
           :src="heroImageSrc"
           alt="Hero Image"
           class="absolute inset-0 w-full h-full object-cover object-center"
-          @error="handleImgError"
+          @error="handleHeroImgError"
         />
   
         <!-- Overlayed Text -->
@@ -51,6 +51,78 @@
         </div>
       </div>
     </section>
+
+    <!--About horti project-->
+    <section class="w-full px-4 md:px-16 pt-[40px] pb-[20px] mb-[32px] flex flex-col md:flex-row items-center justify-between gap-12 max-w-screen-xl mx-auto">
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-4 font-[var(--font-sans)]">
+                About the Horti Project
+            </h2>
+            <p class="mb-6 text-gray-800 max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu nulla, molestie vel lacus ut, interdum ornare augue. Donec euismod, nisi vel consectetur interdum, nisl nisi aliquet nunc, eget bibendum nunc nisl eget nunc.
+            </p>
+            <RouterLink to="/signup">
+                <button class="bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition text-sm">
+                    Sign up
+                </button>
+            </RouterLink>
+        </div>
+
+        <!-- Image Section -->
+        <div class="flex-1">
+            <img
+                :src="hortiImageSrc"
+                alt="Horti Project"
+                class="w-full h-auto rounded-lg shadow-"
+                @error="handleHortiImgError"
+            />
+        </div>
+    </section>
+
+    <section class="w-full px-4 md:px-16 pt-[40px] pb-[20px] mb-[32px] flex flex-col md:flex-row items-center justify-between gap-12 max-w-screen-xl mx-auto">
+
+        <!-- Image Section -->
+        <div class="flex-1">
+            <img
+                :src="droneImageSrc"
+                alt="Flappy drone"
+                class="w-full h-auto rounded-lg shadow-"
+                @error="handleDroneImgError"
+            />
+        </div>
+
+        <!--About drone section-->
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-4 font-[var(--font-sans)]">
+                The Flappy drone project
+            </h2>
+            <p class="mb-6 text-gray-800 max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu nulla, molestie vel lacus ut, interdum ornare augue. Donec euismod, nisi vel consectetur interdum, nisl nisi aliquet nunc, eget bibendum nunc nisl eget nunc.
+            </p>
+        </div>
+    </section>
+
+    <!--User signup section-->
+    <section class="w-full px-4 md:px-16 pt-[40px] pb-[20px] mb-[32px] flex flex-col md:flex-row items-center justify-between gap-12 max-w-screen-xl mx-auto">
+        <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-4 font-[var(--font-sans)]">
+                Stay updated with our research
+            </h2>
+            <p class="mb-6 text-gray-800 max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu nulla, molestie vel lacus ut, interdum ornare augue. Donec euismod, nisi vel consectetur interdum, nisl nisi aliquet nunc, eget bibendum nunc nisl eget nunc.
+            </p>
+        </div>
+
+        <!-- Image Section -->
+        <div class="flex-1">
+            <img
+                :src="researchImageSrc"
+                alt="Research image"
+                class="w-full h-auto rounded-lg shadow-"
+                @error="handleResearchImgError"
+            />
+        </div>
+    </section>
 </template>
   
 <script>
@@ -59,16 +131,27 @@ import { ref } from 'vue'
 export default {
     name: 'Home',
     setup() {
-        const heroImageSrc = ref('/hero-image.png')
-        const fallbackImageSrc = '/placeholder.png'
+        const placeholder = '/placeholder.png'
 
-        function handleImgError() {
-            heroImageSrc.value = fallbackImageSrc
-        }
+        const heroImageSrc = ref('/home-hero-image.png')
+        const hortiImageSrc = ref('/home-horti-project.png')
+        const droneImageSrc = ref('/home-drone.png')
+        const researchImageSrc = ref('/home-research.png')
+
+        const handleHeroImgError = () => { heroImageSrc.value = placeholder }
+        const handleHortiImgError = () => { hortiImageSrc.value = placeholder }
+        const handleDroneImgError = () => { droneImageSrc.value = placeholder }
+        const handleResearchImgError = () => { researchImageSrc.value = placeholder }
 
         return {
             heroImageSrc,
-            handleImgError
+            hortiImageSrc,
+            droneImageSrc,
+            researchImageSrc,
+            handleHeroImgError,
+            handleHortiImgError,
+            handleDroneImgError,
+            handleResearchImgError
         }
     }
 }
