@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-alt: 'Roboto', sans-serif;
+  --color-background: #FFFAF1
+}
