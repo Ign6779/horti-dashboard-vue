@@ -12,7 +12,7 @@
   
       <div class="w-[100px] text-right flex items-center justify-end gap-4 whitespace-nowrap">
         <RouterLink to="/login" class="text-sm text-gray-700 hover:text-green-600">Log in</RouterLink>
-        <RouterLink to="/join">
+        <RouterLink to="/signup">
             <span class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition text-sm">Join Us</span>
         </RouterLink>
       </div>
