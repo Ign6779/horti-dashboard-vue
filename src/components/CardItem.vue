@@ -4,8 +4,8 @@
         @click="goToDetail"
     >
         <img
-            :src="imageUrl
-            alt="name
+            :src="imageUrl"
+            alt="name"
             class="w-full h-[180px] object-cover bg-gray-200"
             @error="handleImageError"
         />
@@ -32,11 +32,12 @@ const props = defineProps({
 })
 
 const router = useRouter()
-const imageUrl = ref(props.image)
-const fallbackImage = 'laceholder.png'
+const imageUrl = ref(props.image && props.image.trim() !== '' ? props.image : '/placeholder.png')
+const placeholder = '/placeholder.png'
 
 const handleImageError = () => {
-    imageUrl.value = fallbackImage
+    console.log('Image not found, using placeholder')
+    imageUrl.value = placeholder
 }
 
 const goToDetail = () => {
