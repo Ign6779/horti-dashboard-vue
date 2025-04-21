@@ -13,7 +13,7 @@
             <img
                 :src="imageUrl"
                 alt="Crop image"
-                class="w-full md:w-[400px] max-h-[400px] object-cover bg-gray-200 rounded-lg"
+                class="w-full md:w-[600px] max-h-[600px] object-cover bg-gray-200 rounded-lg"
                 @error="handleImageError"
             />
 
@@ -24,40 +24,48 @@
                 <p class="mt-4"><span class="font-bold">Description:</span> {{ crop.description || 'No description available.' }}</p>
 
                 <!-- Pests -->
-                <div v-if="crop.pests?.length" class="mt-8">
-                    <h2 class="text-lg font-semibold mb-2">Pests that affect this crop:</h2>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        <div
+                <h3 class="font-semibold text-md mt-6 mb-2">Pests that affect this crop:</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
+                    <div
                         v-for="pest in crop.pests"
                         :key="pest.id"
-                        class="flex flex-col items-center text-center"
-                        >
-                            <img
-                                :src="pest.image || fallbackImage"
-                                alt="Pest image"
-                                class="w-full h-[120px] object-cover rounded bg-gray-200"
-                            />
-                            <p class="mt-2 text-sm">{{ pest.name }}</p>
-                        </div>
+                        class="flex flex-col items-center cursor-pointer group"
+                    >
+                        <!-- Image -->
+                        <img
+                        :src="pest.image || '/placeholder.png'"
+                        alt="Pest Image"
+                        class="w-[200px] h-[140px] object-cover rounded-md transition-transform duration-200 group-hover:shadow-md group-hover:scale-105"
+                        @error="(e) => e.target.src = '/placeholder.png'"
+                        />
+
+                        <!-- Name -->
+                        <span class="mt-2 text-center text-sm font-medium transition-all duration-200 group-hover:font-bold">
+                        {{ pest.name }}
+                        </span>
                     </div>
                 </div>
 
                 <!-- Diseases -->
-                <div v-if="crop.diseases?.length" class="mt-8">
-                    <h2 class="text-lg font-semibold mb-2">Diseases that affect this crop:</h2>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        <div
+                <h3 class="font-semibold text-md mt-6 mb-2">Diseases that affect this crop:</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
+                    <div
                         v-for="disease in crop.diseases"
                         :key="disease.id"
-                        class="flex flex-col items-center text-center"
-                        >
-                            <img
-                            :src="disease.image || fallbackImage"
-                            alt="Disease image"
-                            class="w-full h-[120px] object-cover rounded bg-gray-200"
-                            />
-                            <p class="mt-2 text-sm">{{ disease.name }}</p>
-                        </div>
+                        class="flex flex-col items-center cursor-pointer group"
+                    >
+                        <!-- Image -->
+                        <img
+                        :src="disease.image || '/placeholder.png'"
+                        alt="Disease Image"
+                        class="w-[180px] h-[140px] object-cover rounded-md transition-transform duration-200 group-hover:shadow-md group-hover:scale-105"
+                        @error="(e) => e.target.src = '/placeholder.png'"
+                        />
+
+                        <!-- Name -->
+                        <span class="mt-2 text-center text-sm font-medium transition-all duration-200 group-hover:font-bold">
+                        {{ disease.name }}
+                        </span>
                     </div>
                 </div>
             </div>
