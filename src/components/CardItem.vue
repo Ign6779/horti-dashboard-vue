@@ -1,6 +1,7 @@
 <template>
     <div
-        class="w-[300px] max-w-full h-[400px] bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition"
+        class="w-[300px] max-w-full h-[400px] bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transition duration-200 
+        transform hover:-translate-y-1 hover:shadow-lg"
         @click="goToDetail"
     >
         <img
