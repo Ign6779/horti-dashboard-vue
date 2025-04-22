@@ -57,7 +57,8 @@
           <div v-if="pest.affectedCrops?.length" class="mt-10">
             <h3 class="font-semibold text-md mt-6 mb-2">Crops affected by this pest:</h3>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
-              <div
+              <RouterLink
+                :to="`/crop/${crop.id}`"
                 v-for="crop in pest.affectedCrops"
                 :key="crop.id"
                 class="flex flex-col items-center cursor-pointer group"
@@ -71,7 +72,7 @@
                 <span class="mt-2 text-center text-sm font-medium transition-all duration-200 group-hover:font-bold">
                   {{ crop.name }}
                 </span>
-              </div>
+              </RouterLink>
             </div>
           </div>
         </div>
@@ -81,7 +82,7 @@
   
   <script setup>
   import { ref, onMounted } from 'vue'
-  import { useRoute } from 'vue-router'
+  import { RouterLink, useRoute } from 'vue-router'
   import axios from 'axios'
   
   const route = useRoute()

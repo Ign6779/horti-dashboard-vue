@@ -26,7 +26,8 @@
                 <!-- Pests -->
                 <h3 class="font-semibold text-md mt-6 mb-2">Pests that affect this crop:</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
-                    <div
+                    <RouterLink
+                        :to="`/pest/${pest.id}`"
                         v-for="pest in crop.pests"
                         :key="pest.id"
                         class="flex flex-col items-center cursor-pointer group"
@@ -43,13 +44,14 @@
                         <span class="mt-2 text-center text-sm font-medium transition-all duration-200 group-hover:font-bold">
                         {{ pest.name }}
                         </span>
-                    </div>
+                    </RouterLink>
                 </div>
 
                 <!-- Diseases -->
                 <h3 class="font-semibold text-md mt-6 mb-2">Diseases that affect this crop:</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
-                    <div
+                    <RouterLink
+                        :to="`/disease/${disease.id}`"
                         v-for="disease in crop.diseases"
                         :key="disease.id"
                         class="flex flex-col items-center cursor-pointer group"
@@ -66,7 +68,7 @@
                         <span class="mt-2 text-center text-sm font-medium transition-all duration-200 group-hover:font-bold">
                         {{ disease.name }}
                         </span>
-                    </div>
+                    </RouterLink>
                 </div>
             </div>
         </div>
@@ -75,7 +77,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import axios from 'axios'
 
 const route = useRoute()
