@@ -4,7 +4,7 @@
     <div class="flex flex-wrap items-center gap-2 relative">
       <span class="font-semibold">Categories:</span>
 
-      <!-- All button -->
+      <!-- All -->
       <button
         @click="$emit('select-category', 'All')"
         :class="[
@@ -15,8 +15,8 @@
         All
       </button>
 
-      <!-- Pest button with dropdown -->
-      <div class="relative group inline-block">
+      <!-- Pest (hover dropdown) -->
+      <div class="relative inline-block group">
         <button
           @click="$emit('select-category', 'Pest')"
           :class="[
@@ -26,8 +26,9 @@
         >
           Pest
         </button>
+
         <div
-          class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 group-hover:block group-focus-within:block hidden"
+          class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition"
         >
           <button
             v-for="char in pestCharacteristics"
@@ -40,8 +41,8 @@
         </div>
       </div>
 
-      <!-- Disease button with dropdown -->
-      <div class="relative group inline-block">
+      <!-- Disease (hover dropdown) -->
+      <div class="relative inline-block group">
         <button
           @click="$emit('select-category', 'Disease')"
           :class="[
@@ -51,8 +52,9 @@
         >
           Disease
         </button>
+
         <div
-          class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 group-hover:block group-focus-within:block hidden"
+          class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition"
         >
           <button
             v-for="char in diseaseCharacteristics"
@@ -65,7 +67,7 @@
         </div>
       </div>
 
-      <!-- Predator button -->
+      <!-- Predator -->
       <button
         @click="$emit('select-category', 'Predator')"
         :class="[
@@ -91,7 +93,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, defineEmits, defineProps } from 'vue'
+
+const emit = defineEmits(['select-category', 'select-characteristic', 'update:searchQuery'])
 
 const props = defineProps({
   searchQuery: String,
