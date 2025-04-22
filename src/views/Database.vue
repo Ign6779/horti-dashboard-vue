@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
 import { ref, computed, onMounted } from 'vue'
 import FilterBar from '../components/FilterBar.vue'
 import CardItem from '../components/CardItem.vue'
@@ -40,6 +41,17 @@ const allItems = ref([])
 const searchQuery = ref('')
 const selectedCategory = ref('All')
 const selectedCharacteristic = ref(null)
+
+const route = useRoute()
+onMounted(() => {
+  if (route.query.category) {
+    selectedCategory.value = route.query.category
+  }
+  if (route.query.characteristic) {
+    selectedCharacteristic.value = route.query.characteristic
+  }
+  fetchData()
+})
 
 const endpoints = [
   { url: '/crops', type: 'Crop' },
@@ -69,8 +81,6 @@ const fetchData = async () => {
 
   allItems.value = flattened
 }
-
-onMounted(fetchData)
 
 const filteredItems = computed(() => {
   return allItems.value.filter(item => {

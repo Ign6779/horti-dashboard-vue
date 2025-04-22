@@ -2,17 +2,15 @@
     <section class="w-full min-h-screen px-4 md:px-16 py-6">
         <!-- Breadcrumb -->
         <nav class="text-sm text-gray-500 mb-6">
-            <RouterLink to="/database" class="hover:underline">Diseases</RouterLink>
-            <span class="mx-1">›</span>
-
-            <RouterLink
-                v-if="disease.characteristic"
-                :to="`/diseases/${disease.characteristic.toLowerCase()}`"
-                class="capitalize hover:underline"
-            >
-                {{ disease.characteristic }}
-            </RouterLink>
-
+          <RouterLink :to="{ path: '/database', query: { category: 'Disease' } }" class="hover:underline">Diseases</RouterLink>
+          <span class="mx-1">›</span>
+          <RouterLink
+          v-if="disease.characteristic"
+          :to="{ path: '/database', query: { category: 'Disease', characteristic: disease.characteristic } }"
+          class="capitalize hover:underline"
+        >
+          {{ disease.characteristic }}
+        </RouterLink>
             <span class="mx-1">›</span>
             <span class="font-semibold text-black">{{ disease.name }}</span>
         </nav>

@@ -2,11 +2,11 @@
     <section class="w-full min-h-screen px-4 md:px-16 py-6">
       <!-- Breadcrumb -->
       <nav class="text-sm text-gray-500 mb-6">
-        <RouterLink to="/database" class="hover:underline">Pests</RouterLink>
+        <RouterLink :to="{ path: '/database', query: { category: 'Pest' } }" class="hover:underline">Pests</RouterLink>
         <span class="mx-1">›</span>
         <RouterLink
           v-if="pest.characteristic"
-          :to="`/pests/${pest.characteristic.toLowerCase()}`"
+          :to="{ path: '/database', query: { category: 'Pest', characteristic: pest.characteristic } }"
           class="capitalize hover:underline"
         >
           {{ pest.characteristic }}
