@@ -29,14 +29,14 @@
         <div
           class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 group-hover:block group-focus-within:block hidden"
         >
-          <RouterLink
+          <button
             v-for="char in pestCharacteristics"
             :key="char"
-            :to="`/pests/${char.toLowerCase()}`"
-            class="block px-4 py-2 text-sm hover:bg-gray-100 capitalize whitespace-nowrap"
+            @click="$emit('select-characteristic', { category: 'Pest', characteristic: char })"
+            class="block px-4 py-2 text-sm hover:bg-gray-100 capitalize whitespace-nowrap text-left w-full"
           >
             {{ char }}
-          </RouterLink>
+          </button>
         </div>
       </div>
 
@@ -54,14 +54,14 @@
         <div
           class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 group-hover:block group-focus-within:block hidden"
         >
-          <RouterLink
+          <button
             v-for="char in diseaseCharacteristics"
             :key="char"
-            :to="`/diseases/${char.toLowerCase()}`"
-            class="block px-4 py-2 text-sm hover:bg-gray-100 capitalize whitespace-nowrap"
+            @click="$emit('select-characteristic', { category: 'Disease', characteristic: char })"
+            class="block px-4 py-2 text-sm hover:bg-gray-100 capitalize whitespace-nowrap text-left w-full"
           >
             {{ char }}
-          </RouterLink>
+          </button>
         </div>
       </div>
 
@@ -92,7 +92,6 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import { RouterLink } from 'vue-router'
 
 const props = defineProps({
   searchQuery: String,

@@ -1,14 +1,15 @@
 <template>
   <section class="w-full min-h-screen px-4 md:px-16 py-6">
-    <!--Search bar & filter-->
+    <!-- Filter and search -->
     <FilterBar
       :searchQuery="searchQuery"
       :selectedCategory="selectedCategory"
       @update:searchQuery="val => searchQuery = val"
       @select-category="selectCategory"
+      @select-characteristic="selectCharacteristic"
     />
 
-    <!--Card grid-->
+    <!-- Card grid -->
     <div class="w-full flex justify-center">
       <div
         class="grid gap-x-[16px] gap-y-[25px] max-w-[1328px] w-full"
@@ -28,17 +29,17 @@
     </div>
   </section>
 </template>
-  
+
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import FilterBar from '../components/FilterBar.vue';
+import FilterBar from '../components/FilterBar.vue'
 import CardItem from '../components/CardItem.vue'
 import axios from 'axios'
 
 const allItems = ref([])
 const searchQuery = ref('')
 const selectedCategory = ref('All')
-const categories = ref(['All', 'Crop', 'Pest', 'Disease', 'Predator'])
+const selectedCharacteristic = ref(null)
 
 const endpoints = [
   { url: '/crops', type: 'Crop' },
@@ -49,9 +50,14 @@ const endpoints = [
 
 const selectCategory = (category) => {
   selectedCategory.value = category
+  selectedCharacteristic.value = null
 }
 
-// Fetching data from multiple endpoints
+const selectCharacteristic = ({ category, characteristic }) => {
+  selectedCategory.value = category
+  selectedCharacteristic.value = characteristic
+}
+
 const fetchData = async () => {
   const requests = endpoints.map(({ url }) => axios.get(`http://localhost:3000${url}`))
   const responses = await Promise.all(requests)
@@ -68,16 +74,16 @@ onMounted(fetchData)
 
 const filteredItems = computed(() => {
   return allItems.value.filter(item => {
-    const matchesCategory = 
+    const matchesCategory =
       selectedCategory.value === 'All' || item.type === selectedCategory.value
-    const matchesSearch = item.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    return matchesCategory && matchesSearch
+
+    const matchesCharacteristic =
+      !selectedCharacteristic.value || item.characteristic === selectedCharacteristic.value
+
+    const matchesSearch =
+      item.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+
+    return matchesCategory && matchesCharacteristic && matchesSearch
   })
 })
-</script>
-
-<script>
-export default {
-    name: 'Home'
-  }
 </script>
