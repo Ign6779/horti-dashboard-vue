@@ -13,7 +13,9 @@
 
         <div class="p-4 flex flex-col gap-2 text-left">
         <h3 class="font-bold text-md leading-tight">{{ name }}</h3>
-        <p class="text-xs text-gray-500">{{ type }}</p>
+        <p class="text-xs text-gray-500">
+            {{ type }}<span v-if="characteristic"> – {{ characteristic }}</span>
+        </p>
         <p class="text-sm text-gray-700 line-clamp-4">{{ description }}</p>
         </div>
     </div>
