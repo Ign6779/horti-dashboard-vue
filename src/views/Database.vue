@@ -1,5 +1,7 @@
 <template>
   <section class="w-full min-h-screen px-4 md:px-16 py-6">
+    <h1 class="text-3xl font-bold mb-8 text-center">Horti database</h1>
+
     <!-- Filter and search -->
     <FilterBar
       :searchQuery="searchQuery"
