@@ -1,6 +1,9 @@
 <template>
-  <section class="w-full min-h-screen px-4 md:px-16 py-6">
-    <h1 class="text-3xl font-bold mb-8 text-center">Horti database</h1>
+  <main class="w-full min-h-screen px-4 md:px-16 py-6">
+    <h1 class="text-4xl font-extrabold text-center text-black-900 mb-10 tracking-tight font-[var(--font-sans)]">Horti Database</h1>
+    <h2 class="text-center text-gray-600 text-base font-medium mt-[-30px] mb-5">
+      Find information about crops, pests, diseases, and predators
+    </h2>
 
     <!-- Filter and search -->
     <FilterBar
@@ -12,10 +15,12 @@
     />
 
     <!-- Card grid -->
+    <div v-if="loading" class="text-center py-12 text-gray-500">Loading database...</div>
     <div class="w-full flex justify-center">
-      <div
-        class="grid gap-x-[16px] gap-y-[25px] max-w-[1328px] w-full"
-        style="grid-template-columns: repeat(4, 1fr);"
+      <transition-group
+        name="fade"
+        tag="div"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-1 gap-y-6 max-w-[1328px] w-full"
       >
         <CardItem
           v-for="item in filteredItems"
@@ -27,9 +32,13 @@
           :description="item.description"
           :image="item.image"
         />
-      </div>
+      </transition-group>
     </div>
-  </section>
+
+    <div v-if="filteredItems.length === 0" class="text-center text-gray-500 mt-8">
+      No items match your filters or search.
+    </div>
+  </main>
 </template>
 
 <script setup>
@@ -72,7 +81,11 @@ const selectCharacteristic = ({ category, characteristic }) => {
   selectedCharacteristic.value = characteristic
 }
 
+const loading = ref(true)
+
 const fetchData = async () => {
+  loading.value = true
+
   const requests = endpoints.map(({ url }) => axios.get(`http://localhost:3000${url}`))
   const responses = await Promise.all(requests)
 
@@ -82,6 +95,8 @@ const fetchData = async () => {
   })
 
   allItems.value = flattened
+
+  loading.value = false
 }
 
 const filteredItems = computed(() => {

@@ -1,99 +1,104 @@
 <template>
-  <div class="flex flex-col md:flex-row items-center justify-between h-[92px] mb-8 gap-4">
+  <div class="w-full flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10 px-[8px] max-w-[1328px] mx-auto">
     <!-- Filter by category -->
-    <div class="flex flex-wrap items-center gap-2 relative">
-      <span class="font-semibold">Categories:</span>
+    <div class="flex items-center gap-1 flex-wrap">
+      <span class="font-semibold text-sm text-gray-800">Filter by category:</span>
 
-      <!-- All -->
+      <!-- Basic categories -->
       <button
-        @click="$emit('select-category', 'All')"
+        v-for="cat in basicCategories"
+        :key="cat.label"
+        @click="$emit('select-category', cat.value)"
         :class="[
-          'px-3 py-1 rounded-md text-sm border border-gray-300 transition',
-          selectedCategory === 'All' ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
+          'px-4 py-2 text-sm border rounded-full transition',
+          selectedCategory === cat.value
+            ? 'bg-green-700 text-white border-green-700'
+            : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
         ]"
       >
-        All
+        {{ cat.label }}
       </button>
 
-      <!-- Pest (hover dropdown) -->
-      <div class="relative inline-block group">
+      <!-- Pest Dropdown -->
+      <div class="relative group">
         <button
           @click="$emit('select-category', 'Pest')"
           :class="[
-            'px-3 py-1 rounded-md text-sm border border-gray-300 transition',
-            selectedCategory === 'Pest' ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
+            'px-4 py-2 text-sm border rounded-full transition flex items-center gap-1',
+            selectedCategory === 'Pest'
+              ? 'bg-green-700 text-white border-green-700'
+              : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
           ]"
         >
           Pest
+          <ChevronDownIcon class="w-4 h-4" />
         </button>
-
         <div
-          class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition"
+          class="absolute left-0 top-full mt-0.5 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none z-50 transition duration-200"
         >
           <button
             v-for="char in pestCharacteristics"
             :key="char"
             @click="$emit('select-characteristic', { category: 'Pest', characteristic: char })"
-            class="block px-4 py-2 text-sm hover:bg-gray-100 capitalize whitespace-nowrap text-left w-full"
+            class="block px-4 py-2 w-full text-left text-sm hover:bg-gray-100 capitalize"
           >
             {{ char }}
           </button>
         </div>
       </div>
 
-      <!-- Disease (hover dropdown) -->
-      <div class="relative inline-block group">
+      <!-- Disease Dropdown -->
+      <div class="relative group">
         <button
           @click="$emit('select-category', 'Disease')"
           :class="[
-            'px-3 py-1 rounded-md text-sm border border-gray-300 transition',
-            selectedCategory === 'Disease' ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
+            'px-4 py-2 text-sm border rounded-full transition flex items-center gap-1',
+            selectedCategory === 'Disease'
+              ? 'bg-green-700 text-white border-green-700'
+              : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
           ]"
         >
           Disease
+          <ChevronDownIcon class="w-4 h-4" />
         </button>
-
         <div
-          class="absolute left-0 top-full bg-white border rounded shadow w-max z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition"
+          class="absolute left-0 top-full mt-0.5 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none z-50 transition duration-200"
         >
           <button
             v-for="char in diseaseCharacteristics"
             :key="char"
             @click="$emit('select-characteristic', { category: 'Disease', characteristic: char })"
-            class="block px-4 py-2 text-sm hover:bg-gray-100 capitalize whitespace-nowrap text-left w-full"
+            class="block px-4 py-2 w-full text-left text-sm hover:bg-gray-100 capitalize"
           >
             {{ char }}
           </button>
         </div>
       </div>
-
-      <!-- Predator -->
-      <button
-        @click="$emit('select-category', 'Predator')"
-        :class="[
-          'px-3 py-1 rounded-md text-sm border border-gray-300 transition',
-          selectedCategory === 'Predator' ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
-        ]"
-      >
-        Predator
-      </button>
     </div>
 
     <!-- Search bar -->
-    <div class="relative w-full md:w-64">
-      <input
-        v-model="search"
-        @input="$emit('update:searchQuery', search)"
-        type="text"
-        placeholder="Search..."
-        class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
-      />
+    <div class="w-full md:w-64">
+      <div class="relative w-full">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+        </span>
+        <input
+          v-model="search"
+          @input="$emit('update:searchQuery', search)"
+          type="text"
+          placeholder="Search..."
+          class="w-full border border-gray-300 rounded-md pl-10 pr-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent transition bg-white hover:bg-gray-50 transition"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, defineEmits, defineProps } from 'vue'
+import { ref, watch, defineProps, defineEmits } from 'vue'
+import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 
 const emit = defineEmits(['select-category', 'select-characteristic', 'update:searchQuery'])
 
@@ -105,9 +110,24 @@ const props = defineProps({
 const search = ref(props.searchQuery || '')
 watch(() => props.searchQuery, newVal => (search.value = newVal))
 
+const basicCategories = [
+  { label: 'All', value: 'All' },
+  { label: 'Crop', value: 'Crop' },
+  { label: 'Predator', value: 'Predator' }
+]
+
 const diseaseCharacteristics = ['Bacteria', 'Fungi', 'Oomycetes']
 const pestCharacteristics = [
   'Anthonomus-eugeniiu', 'Aphid', 'Caterpillar', 'Fly', 'Leaf-miner', 'Mites',
   'Otiorhynchus-sulcatus', 'Thrips', 'Wants', 'White-fly'
 ]
 </script>
+
+<style scoped>
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1 !important;
+}
+.group:hover .group-hover\:pointer-events-auto {
+  pointer-events: auto !important;
+}
+</style>

@@ -30,9 +30,14 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 const navClass = (path) => {
+  const detailRoutes = ['/crop/', '/pest/', '/disease/', '/predator/']
+  const isDatabaseActive = path === '/database' && (route.path === '/database' || detailRoutes.some(r => route.path.startsWith(r)))
+
+  const isActive = path === route.path || isDatabaseActive
+
   return [
     'hover:text-green-600 transition',
-    route.path === path ? 'font-bold text-green-600' : 'text-gray-800'
+    isActive ? 'font-bold text-green-600' : 'text-gray-800'
   ]
 }
 </script>
