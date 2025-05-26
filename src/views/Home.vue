@@ -11,7 +11,7 @@
       <div class="absolute inset-0 bg-gradient-to-r from-green-900/70 to-transparent z-0"></div>
       <div class="relative z-10 h-full flex flex-col justify-center pl-16 pr-8 text-white">
         <h1 class="text-6xl font-extrabold mb-4 font-[var(--font-sans)] max-w-2xl leading-tight">
-          Welcome to the horti database
+          Welcome to the Hortidatabase
         </h1>
         <p class="text-lg font-medium mb-6 font-[var(--font-sans)] max-w-lg">
           Discover plant health insights, pest management strategies, and curated crop knowledge all in one place.

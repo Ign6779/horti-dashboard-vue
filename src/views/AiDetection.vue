@@ -213,7 +213,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import axios from 'axios'
+import { api } from '../services/api.js'
 
 const file = ref(null)
 const previewUrl = ref(null)
@@ -264,7 +264,7 @@ async function submitFile() {
   const endpoint = file.value.type.startsWith('image') ? '/predict/image' : '/predict/video'
 
   try {
-    const response = await axios.post(`http://localhost:8000${endpoint}`, formData, {
+    const response = await api.post(endpoint, formData, {
       responseType: 'json'
     })
 

@@ -46,7 +46,7 @@ import { useRoute } from 'vue-router'
 import { ref, computed, onMounted } from 'vue'
 import FilterBar from '../components/FilterBar.vue'
 import CardItem from '../components/CardItem.vue'
-import axios from 'axios'
+import { api } from '../services/api.js'
 
 const allItems = ref([])
 const searchQuery = ref('')
@@ -86,7 +86,7 @@ const loading = ref(true)
 const fetchData = async () => {
   loading.value = true
 
-  const requests = endpoints.map(({ url }) => axios.get(`http://localhost:3000${url}`))
+  const requests = endpoints.map(({ url }) => api.get(url))
   const responses = await Promise.all(requests)
 
   const flattened = responses.flatMap((res, i) => {
