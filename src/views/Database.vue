@@ -86,7 +86,7 @@ const loading = ref(true)
 const fetchData = async () => {
   loading.value = true
 
-  const requests = endpoints.map(({ url }) => api.get(url))
+  const requests = endpoints.map(({ url }) => api.get(`/database/${url}`))
   const responses = await Promise.all(requests)
 
   const flattened = responses.flatMap((res, i) => {
