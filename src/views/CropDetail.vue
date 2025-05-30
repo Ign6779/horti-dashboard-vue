@@ -102,7 +102,7 @@ const handleImageError = () => {
 const fetchCrop = async () => {
   try {
     const id = route.params.id
-    const { data } = await api.get(`/crops/${id}`)
+    const { data } = await api.get(`/database/crops/${id}`)
     crop.value = data
     imageUrl.value = data.image || fallbackImage
   } catch (error) {

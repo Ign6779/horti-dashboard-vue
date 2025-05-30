@@ -134,7 +134,7 @@ const handleImageError = () => {
 const fetchDisease = async () => {
   try {
     const id = route.params.id
-    const { data } = await api.get(`/diseases/${id}`)
+    const { data } = await api.get(`/database/diseases/${id}`)
     disease.value = data
     imageUrl.value = data.image || fallbackImage
   } catch (error) {
