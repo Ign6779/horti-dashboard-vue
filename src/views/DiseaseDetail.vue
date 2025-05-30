@@ -120,6 +120,7 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import axios from 'axios'
+import { api } from '../services/api.js'
 
 const route = useRoute()
 const disease = ref({})
@@ -133,7 +134,7 @@ const handleImageError = () => {
 const fetchDisease = async () => {
   try {
     const id = route.params.id
-    const { data } = await axios.get(`http://localhost:3000/diseases/${id}`)
+    const { data } = await api.get(`/diseases/${id}`)
     disease.value = data
     imageUrl.value = data.image || fallbackImage
   } catch (error) {
