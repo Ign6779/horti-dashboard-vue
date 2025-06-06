@@ -67,28 +67,28 @@
     </div>
 
     <!-- Pest Development Stages -->
-    <div v-if="pest.stages?.length" class="mt-6">
-      <h3 class="text-xl font-semibold mb-4 text-gray-800">Development Stages</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div v-if="pest.stages?.length" class="mt-12">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">Development Stages</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
         <div
           v-for="(stage, index) in pest.stages"
           :key="index"
-          class="border rounded-lg p-4 bg-gray-50 shadow-sm"
+          class="flex flex-col items-center group text-center"
         >
-          <div class="flex items-center justify-between mb-2">
-            <h4 class="text-sm font-bold capitalize">{{ stage.name }}</h4>
-            <span class="text-xs text-gray-600 italic">{{ stage.color || 'Unknown color' }}</span>
-          </div>
-          <p class="text-sm text-gray-700 mb-2">
-            <strong>Length:</strong>
-            {{ stage.minLength }} mm<span v-if="stage.minLength !== stage.maxLength"> – {{ stage.maxLength }} mm</span>
-          </p>
           <img
             :src="stage.image || '/placeholder.png'"
             alt="Stage Image"
-            class="w-full h-32 object-contain bg-white rounded border"
+            class="w-[180px] h-[140px] object-cover rounded-md transition-transform duration-200 group-hover:shadow-md group-hover:scale-105 bg-white border"
             @error="(e) => e.target.src = '/placeholder.png'"
           />
+          <div class="mt-2 text-sm">
+            <p class="font-medium group-hover:font-bold">{{ stage.name }}</p>
+            <p class="text-xs text-gray-500 italic">{{ stage.color || '—' }}</p>
+            <p class="text-xs text-gray-600">
+              {{ stage.minLength }} mm
+              <span v-if="stage.minLength !== stage.maxLength">– {{ stage.maxLength }} mm</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
