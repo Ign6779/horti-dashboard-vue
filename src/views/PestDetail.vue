@@ -47,6 +47,7 @@
           <p><strong>Eggs:</strong> {{ pest.eggs || '—' }}</p>
         </div>
 
+        <!-- Prevention -->
         <div v-if="pest.prevention?.length" class="mt-6">
           <h3 class="text-md font-semibold mb-2">Prevention Methods:</h3>
           <ul class="list-disc list-inside text-sm text-gray-700">
@@ -54,17 +55,46 @@
           </ul>
         </div>
 
-        <div v-if="pest.remedy?.length" class="mt-6">
+        <!-- Remedies -->
+        <div class="mt-6">
           <h3 class="text-md font-semibold mb-2">Remedies:</h3>
-          <ul class="list-disc list-inside text-sm text-gray-700">
+          <ul v-if="pest.remedy?.length" class="list-disc list-inside text-sm text-gray-700">
             <li v-for="(item, index) in pest.remedy" :key="index">{{ item }}</li>
           </ul>
+          <p v-else class="text-sm text-gray-600 italic">No remedies known.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pest Development Stages -->
+    <div v-if="pest.stages?.length" class="mt-6">
+      <h3 class="text-xl font-semibold mb-4 text-gray-800">Development Stages</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div
+          v-for="(stage, index) in pest.stages"
+          :key="index"
+          class="border rounded-lg p-4 bg-gray-50 shadow-sm"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-sm font-bold capitalize">{{ stage.name }}</h4>
+            <span class="text-xs text-gray-600 italic">{{ stage.color || 'Unknown color' }}</span>
+          </div>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Length:</strong>
+            {{ stage.minLength }} mm<span v-if="stage.minLength !== stage.maxLength"> – {{ stage.maxLength }} mm</span>
+          </p>
+          <img
+            :src="stage.image || '/placeholder.png'"
+            alt="Stage Image"
+            class="w-full h-32 object-contain bg-white rounded border"
+            @error="(e) => e.target.src = '/placeholder.png'"
+          />
         </div>
       </div>
     </div>
 
     <!-- Affected Crops -->
-    <section v-if="pest.affectedCrops?.length">
+    <section v-if="pest.affectedCrops?.length" class="mt-12">
       <h2 class="text-xl font-semibold mb-4 text-gray-800">Crops affected by this pest</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-10 mt-4">
         <RouterLink
@@ -91,7 +121,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import axios from 'axios'
 import { api } from '../services/api.js'
 
 const route = useRoute()

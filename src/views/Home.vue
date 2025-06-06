@@ -14,7 +14,7 @@
           Welcome to the Hortidatabase
         </h1>
         <p class="text-lg font-medium mb-6 font-[var(--font-sans)] max-w-lg">
-          Discover plant health insights, pest management strategies, and curated crop knowledge all in one place.
+          Your hub for scientific insights, AI-powered tools, and expert knowledge in horticulture—developed for growers, researchers, and innovators.
         </p>
         <RouterLink
           to="/database"
@@ -35,7 +35,7 @@
         </svg>
         <h2 class="text-lg font-bold mb-2 text-green-800">InHolland Biomimicry</h2>
         <p>
-          Inspired by nature’s design, we apply biomimicry principles to enhance crop health and resilience.
+          Nature inspires our approach. We use biomimicry to develop sustainable solutions that strengthen crop health and agricultural resilience.
         </p>
       </div>
 
@@ -47,7 +47,7 @@
         </svg>
         <h2 class="text-lg font-bold mb-2 text-green-800">Open Source</h2>
         <p>
-          Transparency and community-driven development ensure our data and tools remain accessible to all.
+          Built with transparency in mind. Our data and tools are open to the community: accessible, collaborative, and ready to evolve.
         </p>
       </div>
 
@@ -59,7 +59,7 @@
         </svg>
         <h2 class="text-lg font-bold mb-2 text-green-800">Constant Improvement</h2>
         <p>
-          We iterate and evolve based on user feedback and scientific discovery to serve growers better.
+          We are driven by feedback and research, and improve ourselves based on user feedback and scientific discovery to serve growers better.
         </p>
       </div>
     </div>
@@ -70,7 +70,7 @@
       <div class="flex-1 text-center md:text-left">
         <h2 class="text-3xl font-bold mb-4 font-[var(--font-sans)] text-green-900">About the Horti Project</h2>
         <p class="mb-4 text-gray-800 max-w-xl">
-          The Horti Project empowers sustainable agriculture by combining academic research, technology, and AI to detect and manage plant health issues with precision.
+          The Horti Project is part of InHolland’s Flappy research initiative. It provides digital tools and data for analyzing and managing plant health, bridging AI, science, and horticultural practice.
         </p>
         <RouterLink to="/signup">
           <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition text-base">
