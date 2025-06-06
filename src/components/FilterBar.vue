@@ -148,7 +148,7 @@ const pestCharacteristics = [
   'Anthonomus-eugeniiu', 'Aphid', 'Caterpillar', 'Fly', 'Leaf-miner', 'Mites',
   'Otiorhynchus-sulcatus', 'Thrips', 'Wants', 'White-fly'
 ]
-const pestCharacteristics = [
+const predatorCharacteristics = [
   'Parasitic-wasp', 'Mite', 'Bug', 'Hyperparasites', 'Ladybug', 'Hoverflies', 'Gall-midges'
 ]
 </script>
