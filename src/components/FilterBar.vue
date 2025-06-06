@@ -76,6 +76,34 @@
       </div>
     </div>
 
+    <!-- Predator Dropdown -->
+    <div class="relative group">
+      <button
+        @click="$emit('select-category', 'Predator')"
+        :class="[
+          'px-4 py-2 text-sm border rounded-full transition flex items-center gap-1',
+          selectedCategory === 'Predator'
+            ? 'bg-green-700 text-white border-green-700'
+            : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
+        ]"
+      >
+        Predator
+        <ChevronDownIcon class="w-4 h-4" />
+      </button>
+      <div
+        class="absolute left-0 top-full mt-0.5 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none z-50 transition duration-200"
+      >
+        <button
+          v-for="char in predatorCharacteristics"
+          :key="char"
+          @click="$emit('select-characteristic', { category: 'Predator', characteristic: char })"
+          class="block px-4 py-2 w-full text-left text-sm hover:bg-gray-100 capitalize"
+        >
+          {{ char }}
+        </button>
+      </div>
+    </div>
+
     <!-- Search bar -->
     <div class="w-full md:w-64">
       <div class="relative w-full">
@@ -113,13 +141,15 @@ watch(() => props.searchQuery, newVal => (search.value = newVal))
 const basicCategories = [
   { label: 'All', value: 'All' },
   { label: 'Crop', value: 'Crop' },
-  { label: 'Predator', value: 'Predator' }
 ]
 
 const diseaseCharacteristics = ['Bacteria', 'Fungi', 'Oomycetes']
 const pestCharacteristics = [
   'Anthonomus-eugeniiu', 'Aphid', 'Caterpillar', 'Fly', 'Leaf-miner', 'Mites',
   'Otiorhynchus-sulcatus', 'Thrips', 'Wants', 'White-fly'
+]
+const pestCharacteristics = [
+  'Parasitic-wasp', 'Mite', 'Bug', 'Hyperparasites', 'Ladybug', 'Hoverflies', 'Gall-midges'
 ]
 </script>
 
