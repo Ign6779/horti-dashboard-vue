@@ -74,33 +74,33 @@
           </button>
         </div>
       </div>
-    </div>
 
-    <!-- Predator Dropdown -->
-    <div class="relative group">
-      <button
-        @click="$emit('select-category', 'Predator')"
-        :class="[
-          'px-4 py-2 text-sm border rounded-full transition flex items-center gap-1',
-          selectedCategory === 'Predator'
-            ? 'bg-green-700 text-white border-green-700'
-            : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
-        ]"
-      >
-        Predator
-        <ChevronDownIcon class="w-4 h-4" />
-      </button>
-      <div
-        class="absolute left-0 top-full mt-0.5 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none z-50 transition duration-200"
-      >
+      <!-- Predator Dropdown -->
+      <div class="relative group">
         <button
-          v-for="char in predatorCharacteristics"
-          :key="char"
-          @click="$emit('select-characteristic', { category: 'Predator', characteristic: char })"
-          class="block px-4 py-2 w-full text-left text-sm hover:bg-gray-100 capitalize"
+          @click="$emit('select-category', 'Predator')"
+          :class="[
+            'px-4 py-2 text-sm border rounded-full transition flex items-center gap-1',
+            selectedCategory === 'Predator'
+              ? 'bg-green-700 text-white border-green-700'
+              : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100'
+          ]"
         >
-          {{ char }}
+          Predator
+          <ChevronDownIcon class="w-4 h-4" />
         </button>
+        <div
+          class="absolute left-0 top-full mt-0.5 bg-white border rounded shadow-md opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none z-50 transition duration-200"
+        >
+          <button
+            v-for="char in predatorCharacteristics"
+            :key="char"
+            @click="$emit('select-characteristic', { category: 'Predator', characteristic: char })"
+            class="block px-4 py-2 w-full text-left text-sm hover:bg-gray-100 capitalize"
+          >
+            {{ char }}
+          </button>
+        </div>
       </div>
     </div>
 
