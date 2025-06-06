@@ -41,7 +41,6 @@
         </div>
 
         <div class="text-sm text-gray-800 leading-relaxed space-y-1">
-          <p><strong>Dutch Name:</strong> {{ pest.dutchName || '—' }}</p>
           <p><strong>Family:</strong> {{ pest.family || '—' }}</p>
           <p><strong>Description:</strong> {{ pest.description || 'No description available.' }}</p>
           <p><strong>Eggs:</strong> {{ pest.eggs || '—' }}</p>

@@ -7,6 +7,7 @@ import PestDetail from "../views/PestDetail.vue";
 import RiskAnalysis from "../views/RiskAnalysis.vue";
 import AiDetection from "../views/AiDetection.vue";
 import About from "../views/About.vue";
+import PredatorDetail from "../views/PredatorDetail.vue";
 
 
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
     { path: "/crop/:id", component: CropDetail },
     { path: "/disease/:id", component: DiseaseDetail },
     { path: "/pest/:id", component: PestDetail },
+    { path: "/predator/:id", component: PredatorDetail },
     { path: "/risk-analysis", component: RiskAnalysis },
     { path: "/ai-detection", component: AiDetection },
     { path: "/about", component: About },
