@@ -78,7 +78,7 @@
           <img
             :src="stage.image || '/placeholder.png'"
             alt="Stage Image"
-            class="w-[180px] h-[140px] object-cover rounded-md transition-transform duration-200 group-hover:shadow-md group-hover:scale-105 bg-white border"
+            class="w-[180px] h-[140px] object-cover rounded-md transition-transform duration-200 group-hover:shadow-md group-hover:scale-105"
             @error="(e) => e.target.src = '/placeholder.png'"
           />
           <div class="mt-2 text-sm">
