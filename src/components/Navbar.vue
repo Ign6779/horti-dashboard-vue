@@ -73,7 +73,7 @@ const {
 const login = () => loginWithRedirect();
 
 const logoutUser = () => {
-  logout({ returnTo: window.location.origin })
+  logout({ returnTo: 'https://icy-stone-0131d7a03.6.azurestaticapps.net' })
 }
 
 </script>
