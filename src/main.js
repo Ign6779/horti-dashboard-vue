@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createAuth0 } from '@auth0/auth0-vue'
 import './style.css'
 import App from './App.vue'
 import router from './router'
@@ -7,6 +8,21 @@ import router from './router'
 const app = createApp(App)
 const pinia = createPinia()
 
+app.use(
+  createAuth0({
+    domain: 'gnas.eu.auth0.com',
+    clientId: '80RuYmy9i65bAsUO6wNlp9L4ZJ5EwOSJ',
+    authorizationParams: {
+      redirect_uri: window.location.origin,
+    },
+    cacheLocation: 'localstorage',
+    useRefreshTokens: true,
+    onRedirectCallback: (appState) => {
+      const target = appState?.target || '/'
+      router.push(target)
+    }
+  })
+)
 app.use(router)
 app.use(pinia)
 app.mount('#app')

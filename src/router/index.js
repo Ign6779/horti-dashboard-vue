@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuth0 } from "@auth0/auth0-vue";
 import Home from "../views/Home.vue";
 import Database from "../views/Database.vue";
 import CropDetail from "../views/CropDetail.vue";
@@ -17,14 +18,36 @@ const routes = [
     { path: "/disease/:id", component: DiseaseDetail },
     { path: "/pest/:id", component: PestDetail },
     { path: "/predator/:id", component: PredatorDetail },
-    { path: "/risk-analysis", component: RiskAnalysis },
-    { path: "/ai-detection", component: AiDetection },
+    { path: "/risk-analysis", component: RiskAnalysis, meta: { requiresAuth: true } },
+    { path: "/ai-detection", component: AiDetection, meta: { requiresAuth: true } },
     { path: "/about", component: About },
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+
+router.beforeEach(async (to, from) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  if (!requiresAuth) {
+    return true // allow navigation
+  }
+
+  const auth = useAuth0()
+
+  const isAuthenticated = await auth.isAuthenticated.value
+
+  if (isAuthenticated) {
+    return true // allow navigation
+  }
+
+  await auth.loginWithRedirect({
+    appState: { target: to.fullPath }
+  })
+
+  return false // cancel navigation
 })
 
 export default router;
