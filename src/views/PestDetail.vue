@@ -62,6 +62,22 @@
           </ul>
           <p v-else class="text-sm text-gray-600 italic">No remedies known.</p>
         </div>
+
+        <!-- Climate -->
+        <div v-if="pest.climate?.length" class="mt-6">
+          <h3 class="text-md font-semibold mb-2">Climate Preferences:</h3>
+          <ul class="list-disc list-inside text-sm text-gray-700">
+            <li v-for="(climate, index) in pest.climate" :key="index">{{ climate }}</li>
+          </ul>
+        </div>
+
+        <!-- Feed -->
+        <div v-if="pest.feed?.length" class="mt-6">
+          <h3 class="text-md font-semibold mb-2">Feeding Behavior:</h3>
+          <ul class="list-disc list-inside text-sm text-gray-700">
+            <li v-for="(item, index) in pest.feed" :key="index">{{ item }}</li>
+          </ul>
+        </div>
       </div>
     </div>
 
