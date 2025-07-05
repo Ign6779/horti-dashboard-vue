@@ -10,10 +10,18 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import { useAuth0 } from '@auth0/auth0-vue'
-const { isLoading } = useAuth0()
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+
+const { isLoading, error } = useAuth0()
+
+onMounted(() => {
+  if (error.value) {
+    console.error('Auth0 error:', error)
+  }
+})
 </script>
 
 <style scoped>
