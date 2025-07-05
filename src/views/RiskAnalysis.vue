@@ -173,7 +173,13 @@ async function submit() {
     const response = await api.post(`/risk-analysis/${selectedCrop.value}/${selectedIssue.value}`, payload)
     results.value = response.data
   } catch (error) {
-    alert('An error occurred while fetching results. Please try again.')
+    let message = 'An error occurred while fetching results. Please try again.'
+    
+    if (error.response && error.response.data && error.response.data.detail) {
+    message = error.response.data.detail
+    }
+
+    alert(message)
     console.error('Error fetching results:', error)
   } finally {
     loading.value = false
