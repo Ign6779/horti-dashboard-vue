@@ -135,8 +135,8 @@ export default {
 
     const heroImageSrc = ref('/home-hero-image.png')
     const hortiImageSrc = ref('/home-horti-project.png')
-    const droneImageSrc = ref('/home-drone.png')
-    const researchImageSrc = ref('/home-research.png')
+    const droneImageSrc = ref('/home-drone.jpg')
+    const researchImageSrc = ref('/home-research.jpg')
 
     const handleHeroImgError = () => { heroImageSrc.value = placeholder }
     const handleHortiImgError = () => { hortiImageSrc.value = placeholder }
