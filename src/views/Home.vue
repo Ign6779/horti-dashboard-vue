@@ -134,7 +134,7 @@ export default {
     const placeholder = '/placeholder.png'
 
     const heroImageSrc = ref('/home-hero-image.png')
-    const hortiImageSrc = ref('/home-horti-project.png')
+    const hortiImageSrc = ref('/home-horti-project.jpg')
     const droneImageSrc = ref('/home-drone.jpg')
     const researchImageSrc = ref('/home-research.jpg')
 
